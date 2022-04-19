@@ -1,0 +1,55 @@
+
+.calendar-layout {
+
+  &__wrapper {
+
+  }
+
+  &__wrapper ,  &__menu, &__date-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__header {
+    padding: 0 1rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  }
+
+  &__link {
+    display: block;
+    padding:  1rem;
+  }
+
+  &__aside {
+    background-color: #fafafa;
+    padding-top: 100px;
+  }
+  &__container {
+    display: flex;
+  }
+
+  &__time {
+    display: block;
+    width: 125px;
+    height: 100px;
+    text-align: end;
+    padding-right: .75rem;
+  }
+
+  &__outlet {
+    width: 100%;
+  }
+
+
+}
+
+.date-time {
+
+  &__title {
+    min-width: 250px;
+  }
+
+
+
+}

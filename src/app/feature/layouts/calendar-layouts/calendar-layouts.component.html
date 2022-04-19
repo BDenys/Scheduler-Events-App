@@ -1,5 +1,64 @@
 <section class="calendar-layout">
+  <header class="calendar-layout__header">
+
+    <section class="calendar-layout__wrapper">
+      <section class="calendar-layout__date-time date-time">
+        <section class="date-time__title">
+          April
+        </section>
+
+        <section class="date-time__actions">
+          <button>prev</button>
+          <button>next</button>
+        </section>
+      </section>
+
+      <nav class="calendar-layout__navigation">
+        <ul class="calendar-layout__menu">
+          <li class="calendar-layout__list">
+            <a class="calendar-layout__link"
+               [routerLink]="['/calendar/day']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+            >Day</a>
+          </li>
+          <li class="calendar-layout__list">
+            <a class="calendar-layout__link"
+               [routerLink]="['/calendar/week']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+            >Week</a>
+          </li>
+          <li class="calendar-layout__list">
+            <a class="calendar-layout__link"
+               [routerLink]="['/calendar/month']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+            >Month</a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="date-time__actions">
+        <button>Create event</button>
+      </section>
+    </section>
+
+  </header>
   <main class="calendar-layout__body">
-    <router-outlet></router-outlet>
+    <section class="calendar-layout__container">
+
+      <aside class="calendar-layout__aside">
+        <section
+          class="week-layout__time-line"
+          *ngFor="let time of [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]">
+          <small
+            class="calendar-layout__time">{{time < 10 ? '0'+ time + ':00' : time + ':00'}}
+          </small>
+        </section>
+      </aside>
+
+      <section class="calendar-layout__outlet">
+        <router-outlet></router-outlet>
+      </section>
+
+    </section>
   </main>
 </section>

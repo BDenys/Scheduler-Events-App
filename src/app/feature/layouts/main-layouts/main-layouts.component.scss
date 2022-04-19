@@ -1,0 +1,24 @@
+
+
+.main-layout {
+  position: relative;
+
+  &__header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+  }
+
+  &__body {
+    display: flex;
+  }
+
+  &__aside {
+    flex: .35;
+  }
+
+  &__section{
+    flex: 1.65;
+  }
+}

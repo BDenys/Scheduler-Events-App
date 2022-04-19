@@ -1,1 +1,43 @@
-<p>week-layouts works!</p>
+<section class="week-layout">
+  <main class="week-layout__body">
+    <article class="week-layout__article">
+
+      <section class="week-layout__week-days">
+        <section
+          class="week-layout__week-day"
+          *ngFor="let day of ['Пн','Вт','Ср','Чт','Пт','Сб','Вс']">
+          {{day}}
+        </section>
+      </section>
+
+      <section class="week-layout__grid">
+        <section class="week-layout__rows"
+             *ngFor="let row of rows">
+          <section
+             class="week-layout__columns "
+             *ngFor="let column of columns"
+             (click)="selectedDayFunc(row, column)"
+          >
+            {{ row }}
+            {{ column }}
+          </section>
+        </section>
+
+        <section
+          class="week-layout__events"
+          *ngFor="let event of events"
+          [ngStyle]="{
+           'left': ( event.x | absoluteXPosition ) + 'px',
+           'top' : ( event.y | absoluteYPosition ) + 'px',
+           'height': ( +event.duration | transformDuration ) + 'px'
+          }"
+        >
+          {{ event.description }}
+<!--          'height': +event.duration | toPixelValue-->
+        </section>
+
+      </section>
+    </article>
+
+  </main>
+</section>

@@ -9,6 +9,11 @@ import { CalendarLayoutsComponent } from './layouts/calendar-layouts/calendar-la
 import { DayLayoutsComponent } from './layouts/day-layouts/day-layouts.component';
 import { WeekLayoutsComponent } from './layouts/week-layouts/week-layouts.component';
 import { MonthLayoutsComponent } from './layouts/month-layouts/month-layouts.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AbsoluteXPositionPipe } from './pipes/absolute-x-position.pipe';
+import { AbsoluteYPositionPipe } from './pipes/absolute-Y-position.pipe';
+import { TransformDurationPipe } from './pipes/transform-duration.pipe';
+import { AbsoluteDayPositionPipe } from './pipes/absolute-day-position.pipe';
 
 const routes: Routes = [
   { path: '', component: MainLayoutsComponent, data: { title: 'main'}, children: [
@@ -28,7 +33,12 @@ const routes: Routes = [
     CalendarLayoutsComponent,
     DayLayoutsComponent,
     WeekLayoutsComponent,
-    MonthLayoutsComponent
+    MonthLayoutsComponent,
+    NavbarComponent,
+    AbsoluteXPositionPipe,
+    AbsoluteYPositionPipe,
+    TransformDurationPipe,
+    AbsoluteDayPositionPipe
   ],
   imports: [
     CommonModule,
