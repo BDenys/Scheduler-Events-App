@@ -1,0 +1,23 @@
+
+
+.navbar {
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+  &__wrapper, &__menu  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__menu {
+
+  }
+
+  &__link {
+    display: block;
+    padding: 1rem 1rem;
+  }
+
+}
+
