@@ -1,17 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import {CalendarService} from '../../services/calendar.service';
+import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
+import {Observable} from "rxjs";
 
+@UntilDestroy()
 @Component({
   selector: 'app-day-layouts',
   templateUrl: './day-layouts.component.html',
   styleUrls: ['./day-layouts.component.scss']
 })
 export class DayLayoutsComponent implements OnInit {
-  columns = Array(16).fill('').map((day, index) => index);
-
-  constructor() { }
+  public columns = Array(16).fill('').map((day, index) => index);
+  currentDay!: number;
+  daysInCurrentMonth!: number;
+  constructor(private  calendarService: CalendarService) { }
 
   ngOnInit(): void {
-  }
+
+   this.calendarService.currenDay
+    .pipe(untilDestroyed(this))
+    .subscribe((currentDay: number) => {
+      this.currentDay = currentDay;
+   });
+
+   this.calendarService.daysInCurrentMonth
+     .pipe(untilDestroyed(this))
+     .subscribe((daysInCurrenMonth: number) => {
+       console.log('day layout',daysInCurrenMonth);
+     this.daysInCurrentMonth = daysInCurrenMonth;
+   });
+
+ }
 
   events = [
     {
@@ -105,5 +124,21 @@ export class DayLayoutsComponent implements OnInit {
       description: "New Event"
     }
   ]
+
+  changeDay( step: number ): void {
+   const firstDayInMonth = 1;
+    if( firstDayInMonth === this.currentDay && step < 0  ) {
+      this.calendarService.currenDay = this.daysInCurrentMonth;
+      this.calendarService.changeMonth(step);
+
+    } else if( this.currentDay >= this.daysInCurrentMonth && step > 0) {
+      this.calendarService.currenDay = firstDayInMonth;
+      this.calendarService.changeMonth(step);
+
+    } else {
+      this.calendarService.currenDay = this.currentDay + step;
+    }
+
+  }
 
 }
