@@ -1,0 +1,23 @@
+<div class="section day-layout">
+  <main class="day-layout__body">
+
+    <section class="day-layout__grid">
+      <section class="day-layout__columns">
+        <section class="day-layout__column"
+           *ngFor="let column of columns">
+        </section>
+      </section>
+      <section
+        class="day-layout__events"
+        *ngFor="let event of events; let i = index "
+        [ngStyle]="{
+           'top' : ( event.y | absoluteYPosition ) + 'px',
+           'left': ( i | absoluteDayPosition ) + 'px',
+           'height': ( +event.duration | transformDuration ) + 'px'
+          }">
+        {{ event.description }}
+      </section>
+    </section>
+
+  </main>
+</div>

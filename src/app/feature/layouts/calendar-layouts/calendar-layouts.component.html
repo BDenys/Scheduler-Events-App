@@ -1,0 +1,82 @@
+<section class="calendar-layout">
+  <section class="calendar-layout__header">
+
+    <section class="calendar-layout__wrapper">
+      <section class="calendar-layout__date-time date-time">
+
+        <header class="date-time__header">
+
+          <section class="date-time__year">
+            {{  currentYear$ | async }}
+          </section>
+
+          <section class="date-time__month">
+            {{ currentMonth$ | async | titlecase }}
+          </section>
+
+          <section class="date-time__week" *ngIf="activePath === 'week'">
+            [{{ staticDoubleArray[currenDayOnWeek]}}]
+          </section>
+
+        </header>
+
+        <section class="date-time__actions" *ngIf="activePath === 'week'">
+          <button (click)="changeWeek(-1)">prev</button>
+          <button (click)="changeWeek(1)">next</button>
+        </section>
+
+        <section class="date-time__actions" *ngIf="activePath !== 'week'">
+          <button (click)="changeMonth(-1)">prev</button>
+          <button (click)="changeMonth(1)">next</button>
+        </section>
+
+      </section>
+
+      <nav class="calendar-layout__navigation">
+        <ul class="calendar-layout__menu">
+          <li class="calendar-layout__list">
+            <a class="calendar-layout__link"
+               [routerLink]="['/calendar/day']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+            >Day</a>
+          </li>
+          <li class="calendar-layout__list">
+            <a class="calendar-layout__link"
+               [routerLink]="['/calendar/week']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+            >Week</a>
+          </li>
+          <li class="calendar-layout__list">
+            <a class="calendar-layout__link"
+               [routerLink]="['/calendar/month']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+            >Month</a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="date-time__actions">
+        <button>Create event</button>
+      </section>
+    </section>
+  </section>
+  <main class="calendar-layout__body">
+    <section class="calendar-layout__container">
+
+      <aside class="calendar-layout__aside"  *ngIf="activePath !== 'month'">
+        <section
+          class="week-layout__time-line"
+          *ngFor="let time of [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]">
+          <small
+            class="calendar-layout__time">{{time < 10 ? '0'+ time + ':00' : time + ':00'}}
+          </small>
+        </section>
+      </aside>
+
+      <section class="calendar-layout__outlet">
+        <router-outlet></router-outlet>
+      </section>
+
+    </section>
+  </main>
+</section>

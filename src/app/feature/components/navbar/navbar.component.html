@@ -1,0 +1,35 @@
+<header class="navbar">
+  <section class="navbar__wrapper container">
+    <section class="navbar__logo">
+      Scheduler Application
+    </section>
+
+    <main class="navbar__body">
+      <nav class="navbar__navigation">
+        <ul class="navbar__menu">
+          <li class="navbar__list">
+            <a class="navbar__link"
+               [routerLink]="['/dashboard']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{ exact: true }"
+            >
+              Dashboard
+            </a>
+          </li>
+          <li class="navbar__list">
+            <a class="navbar__link"
+               [routerLink]="['/calendar']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{ exact: false }"
+            >
+              Calendar
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </main>
+
+    <section class="navbar__actions">
+      Some Actions
+    </section>
+  </section>
+
+</header>
