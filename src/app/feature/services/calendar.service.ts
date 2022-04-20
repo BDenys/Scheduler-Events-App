@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 } )
 export class CalendarService {
 
+  currentDay = new Date()
 
   private _calendar$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>( [] );
 
@@ -19,10 +20,9 @@ export class CalendarService {
   public _currenYearString: BehaviorSubject<string> = new BehaviorSubject<string>( '' );
   public _currenWeek: BehaviorSubject<number> = new BehaviorSubject<number>( 0 );
   public _currenDayOnWeek: BehaviorSubject<number> = new BehaviorSubject<number>( 0 );
-  public _currentDay: BehaviorSubject<number> = new BehaviorSubject<number>( 0 );
+  public _currentDay: BehaviorSubject<number> = new BehaviorSubject<number>( 0  );
   public _daysInCurrentMonth: BehaviorSubject<number> = new BehaviorSubject<number>( 0 );
   private _sortPrepareDate: BehaviorSubject<any[][]> = new BehaviorSubject<any[][]>( [[]]);
-
 
   // @ts-ignore
   get sortedCalendar(): Observable<any[]> {
@@ -40,7 +40,6 @@ export class CalendarService {
   set sortPrepareDate(value: any) {
     this._sortPrepareDate.next(value);
   }
-
 
   get calendar$(): Observable<any[]> {
     return this._calendar$.asObservable();
@@ -95,14 +94,23 @@ export class CalendarService {
 
   generateCalendar() {
     const date: Date = new Date();
+    const day: number = date.getDate();
+
     if ( this.navigation !== 0 ) {
       date.setMonth( new Date().getMonth() + this.navigation );
+
+      if ( this.navigation < 0) {
+        this.currenDay = this._daysInCurrentMonth.value;
+      } else if( this.navigation > 0 ) {
+        this.currenDay = 1;
+      } else {
+        this.currenDay = date;
+      }
+
     }
     const year: number = date.getFullYear();
     const month: number = date.getMonth();
-    const day: number = date.getDate();
 
-    this.currenDay = day;
     this.monthToLocaleDateString( date );
     this.yearToLocaleDateString( date );
 
