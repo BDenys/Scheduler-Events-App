@@ -41,15 +41,34 @@
     width: 100%;
   }
 
-
 }
 
 .date-time {
 
-  &__title {
-    min-width: 250px;
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
   }
 
+  &__month, &__year, &__week {
+    display: flex;
+    align-items: center;
+    min-width: 100px;
+  }
 
+  &__month, &__year {
+    font-size: 1.5rem;
+  }
+
+  &__year {
+    font-size: 1.5rem;
+  }
+
+  &__week {
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
 
 }

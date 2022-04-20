@@ -2,7 +2,6 @@
   &__columns {
     //display: flex;
     //flex-direction: column;
-
   }
 
   &__grid {
@@ -20,12 +19,16 @@
 
   &__events {
     min-width: 250px;
-    margin-left: .5rem;
-    background-color: coral;
+    margin-left: .25rem;
+    background-color: #ffa580;
     margin-top: 100px;
+    padding: 0 .5rem;
+    border-left: 3px solid #671d01;
+    border-radius: 0 5px 5px 0;
     position: absolute;
     top: 0;
     left: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   }
 
 }

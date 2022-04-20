@@ -1,16 +1,35 @@
 <section class="calendar-layout">
-  <header class="calendar-layout__header">
+  <section class="calendar-layout__header">
 
     <section class="calendar-layout__wrapper">
       <section class="calendar-layout__date-time date-time">
-        <section class="date-time__title">
-          April
+
+        <header class="date-time__header">
+
+          <section class="date-time__year">
+            {{  currentYear$ | async }}
+          </section>
+
+          <section class="date-time__month">
+            {{ currentMonth$ | async | titlecase }}
+          </section>
+
+          <section class="date-time__week" *ngIf="activePath === 'week'">
+            [{{ staticDoubleArray[currenDayOnWeek]}}]
+          </section>
+
+        </header>
+
+        <section class="date-time__actions" *ngIf="activePath === 'week'">
+          <button (click)="changeWeek(-1)">prev</button>
+          <button (click)="changeWeek(1)">next</button>
         </section>
 
-        <section class="date-time__actions">
-          <button>prev</button>
-          <button>next</button>
+        <section class="date-time__actions" *ngIf="activePath !== 'week'">
+          <button (click)="changeMonth(-1)">prev</button>
+          <button (click)="changeMonth(1)">next</button>
         </section>
+
       </section>
 
       <nav class="calendar-layout__navigation">
@@ -40,12 +59,11 @@
         <button>Create event</button>
       </section>
     </section>
-
-  </header>
+  </section>
   <main class="calendar-layout__body">
     <section class="calendar-layout__container">
 
-      <aside class="calendar-layout__aside">
+      <aside class="calendar-layout__aside"  *ngIf="activePath !== 'month'">
         <section
           class="week-layout__time-line"
           *ngFor="let time of [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]">

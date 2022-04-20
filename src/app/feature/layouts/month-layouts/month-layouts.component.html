@@ -1,1 +1,27 @@
-<p>month-layouts works!</p>
+<section class="calendar-layout">
+  <section class="calendar-layout__calendar">
+    <header class="calendar-layout__header">
+
+      <section class="calendar-layout__week-days">
+          <section
+            class="calendar-layout__week-day"
+            *ngFor="let day of staticWeekDaysShort; let i = index">
+            {{ day }}
+          </section>
+      </section>
+
+    </header>
+    <main class="calendar-layout__grid">
+      <section
+        class="calendar-layout__day"
+        *ngFor="let day of (calendar$ | async); let i = index"
+        [ngClass]="{
+          notEmpty: day.events.length !== 0,
+          currentDay: day.current,
+          normalDay: !day.padding
+        }">
+        {{  day.value  }}
+      </section>
+    </main>
+  </section>
+</section>

@@ -3,10 +3,21 @@
     <article class="week-layout__article">
 
       <section class="week-layout__week-days">
-        <section
-          class="week-layout__week-day"
-          *ngFor="let day of ['Пн','Вт','Ср','Чт','Пт','Сб','Вс']">
-          {{day}}
+
+        <section class="week-layout__wrapper">
+          <section
+            class="week-layout__week-day"
+            *ngFor="let day of ['Пн','Вт','Ср','Чт','Пт','Сб','Вс']">
+            {{day}}
+          </section>
+        </section>
+
+        <section class="week-layout__wrapper">
+          <section
+            class="week-layout__week-day"
+            *ngFor="let day of staticDaysOfWeek[currenDayOnWeek]; let i = index">
+            {{ day }}
+          </section>
         </section>
       </section>
 
