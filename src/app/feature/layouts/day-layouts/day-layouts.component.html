@@ -1,4 +1,13 @@
-<div class="section day-layout">
+<section class="day-layout">
+
+  <header class="day-layout__header">
+
+      {{ currentDay }}
+
+    <button (click)="changeDay(-1)">prev</button>
+    <button (click)="changeDay(1)">next</button>
+  </header>
+
   <main class="day-layout__body">
 
     <section class="day-layout__grid">
@@ -20,4 +29,4 @@
     </section>
 
   </main>
-</div>
+</section>
