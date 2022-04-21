@@ -34,6 +34,7 @@ export class CalendarLayoutsComponent implements OnInit, DoCheck {
     this.calendarService.generateCalendar();
     this.currentMonth$ = this.calendarService.currenMonthString;
     this.currentYear$ = this.calendarService.currenYearString;
+
     this.calendarService.currenDay
       .pipe( untilDestroyed( this ) )
       .subscribe( currentDay => {
@@ -46,8 +47,6 @@ export class CalendarLayoutsComponent implements OnInit, DoCheck {
       .subscribe( data => {
         this.calendar = data;
       } );
-    this.generateWeekDaysArray();
-    this.findIndexInDoubleArray();
 
     this.calendarService.currenDayOnWeek
       .pipe( untilDestroyed( this ) )
@@ -55,7 +54,8 @@ export class CalendarLayoutsComponent implements OnInit, DoCheck {
         this.currenDayOnWeek = currenDayOnWeek;
       } );
 
-
+    this.generateWeekDaysArray();
+    this.findIndexInDoubleArray();
   }
 
   ngDoCheck() {
@@ -83,22 +83,6 @@ export class CalendarLayoutsComponent implements OnInit, DoCheck {
 
     } else {
       this.calendarService.currenDayOnWeek = this.currenDayOnWeek + step;
-    }
-
-  }
-
-  findIndexInDoubleArray(): any {
-
-    if ( this.calendar[0][0].date.day < this.currentDay && this.currentDay < this.calendar[0][6].date.day ) {
-      return this.calendarService.currenDayOnWeek = 0;
-    } else if ( this.calendar[1][0].date.day < this.currentDay && this.currentDay < this.calendar[1][6].date.day ) {
-      return this.calendarService.currenDayOnWeek = 1;
-    } else if ( this.calendar[2][0].date.day < this.currentDay && this.currentDay < this.calendar[2][6].date.day ) {
-      return this.calendarService.currenDayOnWeek = 2;
-    } else if ( this.calendar[3][0].date.day < this.currentDay && this.currentDay < this.calendar[3][6].date.day ) {
-      return this.calendarService.currenDayOnWeek = 3;
-    } else if ( this.calendar[4][0].date.day < this.currentDay ) {
-      return this.calendarService.currenDayOnWeek = 4;
     }
 
   }
@@ -131,6 +115,26 @@ export class CalendarLayoutsComponent implements OnInit, DoCheck {
     }
     // console.log( arr );
     this.staticDoubleArray = arr;
+  }
+
+  findIndexInDoubleArray(): any {
+
+    if ( this.calendar[0][0].date.day <= this.currentDay && this.currentDay <= this.calendar[0][6].date.day ) {
+      this.calendarService.currenDayOnWeek = 0;
+
+    } else if ( this.calendar[1][0].date.day <= this.currentDay && this.currentDay <= this.calendar[1][6].date.day ) {
+      this.calendarService.currenDayOnWeek = 1;
+
+    } else if ( this.calendar[2][0].date.day <= this.currentDay && this.currentDay <= this.calendar[2][6].date.day ) {
+      this.calendarService.currenDayOnWeek = 2;
+
+    } else if ( this.calendar[3][0].date.day <= this.currentDay && this.currentDay <= this.calendar[3][6].date.day ) {
+      this.calendarService.currenDayOnWeek = 3;
+
+    } else if ( this.calendar[4][0].date.day <= this.currentDay ) {
+      this.calendarService.currenDayOnWeek = 4;
+    }
+
   }
 
 }
