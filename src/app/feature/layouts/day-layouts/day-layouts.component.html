@@ -1,12 +1,16 @@
 <section class="day-layout">
 
-  <header class="day-layout__header">
+ <div class="day-layout__wrapper">
+   <header class="day-layout__header">
+     <button (click)="changeDay(-1)">prev</button>
 
-      {{ currentDay }}
+     <section class="day-layout__title">
+       {{ currentDay }}
+     </section>
 
-    <button (click)="changeDay(-1)">prev</button>
-    <button (click)="changeDay(1)">next</button>
-  </header>
+     <button (click)="changeDay(1)">next</button>
+   </header>
+ </div>
 
   <main class="day-layout__body">
 
@@ -18,13 +22,13 @@
       </section>
       <section
         class="day-layout__events"
-        *ngFor="let event of events; let i = index "
+        *ngFor="let event of calendar[currentDay - 1].events; let i = index "
         [ngStyle]="{
            'top' : ( event.y | absoluteYPosition ) + 'px',
            'left': ( i | absoluteDayPosition ) + 'px',
            'height': ( +event.duration | transformDuration ) + 'px'
           }">
-        {{ event.description }}
+       {{ currentDay }} {{ event.description }}
       </section>
     </section>
 

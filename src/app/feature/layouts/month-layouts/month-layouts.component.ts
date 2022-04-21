@@ -12,8 +12,6 @@ import {UntilDestroy, untilDestroyed} from "@ngneat/until-destroy";
 export class MonthLayoutsComponent implements OnInit {
   staticWeekDays = ['понедельник','вторник','среда','четверг','пятница','суббота','воскресенье'];
   staticWeekDaysShort = ['Пн','Вт','Ср','Чт','Пн','Сб','Вс'];
-
-
   calendar!: any[];
   calendar$!: Observable<any>;
 

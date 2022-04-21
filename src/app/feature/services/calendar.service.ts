@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 } )
 export class CalendarService {
 
-  currentDay = new Date()
+  currentDay = new Date().getDate();
 
   private _calendar$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>( [] );
 
@@ -15,22 +15,22 @@ export class CalendarService {
   locales = 'ru-RU';
 
   navigation: number = 0;
-  private _sortedCalendar: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>( []);
+  private _sortedCalendar: BehaviorSubject<any[]> = new BehaviorSubject<any[]>( [] );
   public _currenMonthString: BehaviorSubject<string> = new BehaviorSubject<string>( '' );
   public _currenYearString: BehaviorSubject<string> = new BehaviorSubject<string>( '' );
   public _currenWeek: BehaviorSubject<number> = new BehaviorSubject<number>( 0 );
   public _currenDayOnWeek: BehaviorSubject<number> = new BehaviorSubject<number>( 0 );
-  public _currentDay: BehaviorSubject<number> = new BehaviorSubject<number>( 0  );
+  public _currentDay: BehaviorSubject<number> = new BehaviorSubject<number>( this.currentDay );
   public _daysInCurrentMonth: BehaviorSubject<number> = new BehaviorSubject<number>( 0 );
-  private _sortPrepareDate: BehaviorSubject<any[][]> = new BehaviorSubject<any[][]>( [[]]);
+  private _sortPrepareDate: BehaviorSubject<any[][]> = new BehaviorSubject<any[][]>( [ [] ] );
 
   // @ts-ignore
   get sortedCalendar(): Observable<any[]> {
     return this._sortedCalendar.asObservable();
   }
 
-  set sortedCalendar(value: any[]) {
-    this._sortedCalendar.next(value);
+  set sortedCalendar(value: any) {
+    this._sortedCalendar.next( value );
   }
 
   get sortPrepareDate(): Observable<any[][]> {
@@ -38,7 +38,7 @@ export class CalendarService {
   }
 
   set sortPrepareDate(value: any) {
-    this._sortPrepareDate.next(value);
+    this._sortPrepareDate.next( value );
   }
 
   get calendar$(): Observable<any[]> {
@@ -99,9 +99,9 @@ export class CalendarService {
     if ( this.navigation !== 0 ) {
       date.setMonth( new Date().getMonth() + this.navigation );
 
-      if ( this.navigation < 0) {
+      if ( this.navigation < 0 ) {
         this.currenDay = this._daysInCurrentMonth.value;
-      } else if( this.navigation > 0 ) {
+      } else if ( this.navigation > 0 ) {
         this.currenDay = 1;
       } else {
         this.currenDay = date;
@@ -152,9 +152,193 @@ export class CalendarService {
               day: 'numeric'
             } )
           },
-          events: [
-            { s: 's' },
-            { s: 's' }
+          events:[
+            {
+              x: 0,
+              y: 0,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 2,
+              y: 1,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 4,
+              y: 2,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 6,
+              y: 0,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 6,
+              y: 2,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 0,
+              y: 2,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 2,
+              y: 3,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 4,
+              y: 4,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 6,
+              y: 4,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 0,
+              y: 4,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 0,
+              y: 6,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 2,
+              y: 5,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 4,
+              y: 6,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 6,
+              y: 6,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 2,
+              y: 7,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 3,
+              y: 2,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 3,
+              y: 4,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 0,
+              y: 8,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 3,
+              y: 8,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 5,
+              y: 7,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 5,
+              y: 10,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 2,
+              y: 9,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 3,
+              y: 10,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 0,
+              y: 10,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 1,
+              y: 11,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 1,
+              y: 8,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 6,
+              y: 8,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 4,
+              y: 11,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 3,
+              y: 13,
+              duration: 30,
+              description: "New Event"
+            },
+            {
+              x: 5,
+              y: 13,
+              duration: 45,
+              description: "New Event"
+            },
+            {
+              x: 0,
+              y: 12,
+              duration: 30,
+              description: "New Event"
+            }
           ]
         };
         calendar.push( newEvent );
@@ -166,7 +350,7 @@ export class CalendarService {
           active: false,
           value: null,
           date: {
-            day: i - paddingDaysInCurrentMonth,
+            day: null,
             dayInWeek: new Date( year, month, i - paddingDaysInCurrentMonth ),
             dayInWeekShort: new Date( year, month, i - paddingDaysInCurrentMonth ).toLocaleDateString( this.locales, {
               weekday: 'short'
@@ -207,7 +391,7 @@ export class CalendarService {
 
   prepareDataToWeekLayout(): any[][] {
     const SIZE = 7;
-    return this.sortData( this._calendar$.value ).reduce( (acc, currenElement) => {
+    return this.sortData( this._calendar$.value ).reduce( (acc: any[][], currenElement: any) => {
       if ( acc[acc.length - 1].length == SIZE ) {
         acc.push( [] );
       }
@@ -215,13 +399,12 @@ export class CalendarService {
       if ( !currenElement.padding ) {
         acc[acc.length - 1].push( currenElement );
       }
-
       return acc;
     }, [ [] ] );
   }
 
-  sortData(calendar: any[]): any[] {
-    return calendar.sort( (dayA, dayB) => {
+  sortData(calendar: any[]): any {
+    return calendar.filter(day => !day.padding).sort( (dayA, dayB) => {
       return +dayA.date.day - +dayB.date.day;
     } );
   }

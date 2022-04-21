@@ -36,7 +36,7 @@
 
         <section
           class="week-layout__events"
-          *ngFor="let event of events"
+          *ngFor="let event of calendar[currenDayOnWeek][currenDayOnWeek].events"
           [ngStyle]="{
            'left': ( event.x | absoluteXPosition ) + 'px',
            'top' : ( event.y | absoluteYPosition ) + 'px',
@@ -44,6 +44,7 @@
           }"
         >
           {{ event.description }}
+          {{ currenDayOnWeek  }}
 <!--          'height': +event.duration | toPixelValue-->
         </section>
 

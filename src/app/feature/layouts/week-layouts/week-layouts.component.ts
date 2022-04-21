@@ -14,13 +14,14 @@ export class WeekLayoutsComponent implements OnInit {
   public columns = Array( 15 ).fill( '' ).map( (day, index) => index );
 
   staticDaysOfWeek!: string[][];
-
+  calendar!: any[];
+  currentDay!: number;
   public events: any[] = [];
   public durationHandler = 30;
   currenDayOnWeek!: number;
   daysInCurrentWeek!: number;
   daysInCurrentMonth!: number;
-  sortedCalendar!: any[]
+  sortedCalendar!: any[];
   selectedDay = {
     x: 0,
     y: 0
@@ -30,9 +31,21 @@ export class WeekLayoutsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.calendarService.currenDay
+      .pipe( untilDestroyed( this ) )
+      .subscribe( currentDay => {
+        this.currentDay = currentDay;
+      } );
+
+
+
+    // console.log( this.currenDayOnWeek );
+
     this.calendarService.currenDayOnWeek
       .pipe( untilDestroyed( this ) )
       .subscribe( currenDayOnWeek => {
+        console.log(currenDayOnWeek);
         this.currenDayOnWeek = currenDayOnWeek;
       } );
 
@@ -41,6 +54,9 @@ export class WeekLayoutsComponent implements OnInit {
       .subscribe( daysInCurrentMonth => {
         this.daysInCurrentMonth = daysInCurrentMonth;
       } );
+
+    this.calendar = this.calendarService.prepareDataToWeekLayout();
+    console.log( this.calendar[this.currenDayOnWeek][0].events );
 
     this.calendarService.sortedCalendar
       .pipe(untilDestroyed(this))
@@ -58,6 +74,7 @@ export class WeekLayoutsComponent implements OnInit {
   }
 
   createEvent(coordinates?: any) {
+    console.log(this.selectedDay);
     const newEvent = {
       x: this.selectedDay.x,
       y: this.selectedDay.y,
@@ -77,8 +94,8 @@ export class WeekLayoutsComponent implements OnInit {
         if ( acc[acc.length - 1].length == arraySize ) {
           acc.push( [] );
         }
-        console.log(' from reduce ',currenElement.date.day);
-        if (+currenElement.date.day > 0 ) {
+
+        if ( !currenElement.padding ) {
           acc[acc.length - 1].push( currenElement.date.day );
         }
 
